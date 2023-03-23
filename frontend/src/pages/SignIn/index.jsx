@@ -1,10 +1,22 @@
-import { NavLink } from 'react-router-dom';
+//import { NavLink } from 'react-router-dom';
+import Form from '../../components/Form';
+import styles from './SignIn.module.css';
+import userIcon from '../../assets/icons/circle-user-solid.svg';
 
 export default function SignIn() {
   return (
-    <>
-      <div>Je suis la page de connexion de l'utilisateur.</div>
-      <NavLink to="/user">Sign in</NavLink>
-    </>
+    <main className={styles.mainBgDark}>
+      <section className={styles.signInContent}>
+        <img
+          className={styles.signInIcon}
+          src={userIcon}
+          alt="Icône d'utilisateur"
+        />
+        <h1>Sign In</h1>
+        <Form />
+      </section>
+    </main>
   );
 }
+
+/*<NavLink to="/user">Sign in</NavLink>*/

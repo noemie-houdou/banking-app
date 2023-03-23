@@ -5,7 +5,7 @@ import featuresData from '../../utils/featuresData';
 
 export default function Homepage() {
   return (
-    <>
+    <main>
       <Banner />
       <section className={styles.features}>
         <h2 className={styles.srOnly}>Features</h2>
@@ -19,6 +19,6 @@ export default function Homepage() {
           />
         ))}
       </section>
-    </>
+    </main>
   );
 }

@@ -1,0 +1,39 @@
+.inputRemember {
+  display: flex;
+}
+
+.inputRemember label {
+  margin-left: 0.25rem;
+}
+
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-bottom: 1rem;
+}
+
+.inputWrapper label {
+  margin-left: 2px;
+  margin-right: 2px;
+  font-weight: bold;
+}
+
+.inputWrapper input {
+  margin: 6px 2px 0px 2px;
+  padding: 5px;
+  font-size: 1.2rem;
+}
+
+.signInButton {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  border-style: none;
+  background-color: #00bc77;
+  color: #fff;
+  text-decoration: underline;
+}

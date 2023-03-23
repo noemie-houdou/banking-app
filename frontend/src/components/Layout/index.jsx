@@ -5,7 +5,7 @@ import styles from './Layout.module.css';
 
 export default function Layout() {
   return (
-    <>
+    <div className={styles.layout}>
       <header>
         <nav className={styles.mainNav}>
           <NavLink className={styles.mainNavLogo} to="/">
@@ -18,12 +18,10 @@ export default function Layout() {
           </NavLink>
         </nav>
       </header>
-      <main>
-        <Outlet />
-      </main>
+      <Outlet />
       <footer className={styles.footer}>
         <p className={styles.footerText}>Copyright 2020 Argent Bank</p>
       </footer>
-    </>
+    </div>
   );
 }
