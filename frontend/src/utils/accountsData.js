@@ -1,4 +1,4 @@
-const accountData = [
+const accountsData = [
   {
     id: 'MQls23',
     title: 'Argent Bank Checking (x8349)',
@@ -19,4 +19,4 @@ const accountData = [
   },
 ];
 
-export default accountData;
+export default accountsData;
