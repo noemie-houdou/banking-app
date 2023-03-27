@@ -1,4 +1,6 @@
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { reset } from '../../features/login';
 import userIcon from '../../assets/icons/circle-user-solid.svg';
 import signOutIcon from '../../assets/icons/right-from-bracket-solid.svg';
 import logo from '../../assets/images/argentBankLogo.png';
@@ -7,6 +9,15 @@ import styles from './Layout.module.css';
 export default function Layout() {
   const location = useLocation();
   const userRoute = location.pathname === '/user';
+
+  const dispatch = useDispatch();
+
+  const handleLogOutClick = () => {
+    sessionStorage.clear();
+    localStorage.clear();
+    dispatch(reset());
+  };
+
   return (
     <div className={styles.layout}>
       <header>
@@ -25,7 +36,11 @@ export default function Layout() {
                 />
                 Username
               </NavLink>
-              <NavLink className={styles.mainNavItem} to="/">
+              <NavLink
+                className={styles.mainNavItem}
+                to="/"
+                onClick={handleLogOutClick}
+              >
                 <img
                   className={styles.signOutIcon}
                   src={signOutIcon}

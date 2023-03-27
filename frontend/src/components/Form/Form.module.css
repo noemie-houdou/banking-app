@@ -37,3 +37,20 @@
   color: #fff;
   text-decoration: underline;
 }
+
+.errorMessage {
+  margin-top: 5px;
+  margin-bottom: 0;
+  color: red;
+  font-size: 14px;
+}
+
+.errorMessage2 {
+  margin-bottom: 10px;
+}
+
+@media all and (max-width: 319px) {
+  .errorMessage {
+    font-size: 12px;
+  }
+}
