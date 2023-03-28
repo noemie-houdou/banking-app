@@ -19,8 +19,7 @@ export const fetchUser = createAsyncThunk(
         const message = data.message;
         return rejectWithValue('status: ' + error + ', ' + message);
       } else {
-        const data = await response.json();
-        const userToken = data.body.token;
+        const userToken = await response.json();
         return userToken;
       }
     } catch (error) {
@@ -33,6 +32,7 @@ const initialState = {
   status: 'idle',
   userToken: null,
   error: null,
+  rememberMe: null,
 };
 
 const usersLogin = createSlice({
@@ -62,5 +62,4 @@ const usersLogin = createSlice({
 });
 
 export const { reset } = usersLogin.actions;
-
 export default usersLogin.reducer;

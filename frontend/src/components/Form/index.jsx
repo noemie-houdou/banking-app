@@ -3,16 +3,18 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './Form.module.css';
 import { fetchUser } from '../../features/login';
-import { userToken, loginError } from '../../utils/selectors';
+import { userToken, loginError, remember } from '../../utils/selectors';
 import { useEffect } from 'react';
+import { toggle } from '../../features/rememberMe';
 
 export default function Form() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [isChecked, setIsChecked] = useState(false);
   const [errors, setErrors] = useState({});
 
   const dispatch = useDispatch();
+  const auth = useSelector(userToken);
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -36,23 +38,19 @@ export default function Form() {
     }
   };
 
-  const token = useSelector(userToken);
-  if (token !== null && isChecked) {
-    localStorage.setItem('token', token);
-  }
-  if (token !== null && !isChecked) {
-    sessionStorage.setItem('token', token);
-  }
-
-  const navigate = useNavigate();
-
   useEffect(() => {
-    if (token !== null) {
+    if (auth !== null) {
       navigate('/user');
     }
-  }, [token, navigate]);
+  }, [auth, navigate]);
 
   const error = useSelector(loginError);
+
+  const isChecked = useSelector(remember);
+
+  const handleChange = () => {
+    dispatch(toggle());
+  };
 
   return (
     <form onSubmit={handleSubmit}>
@@ -99,7 +97,7 @@ export default function Form() {
           type="checkbox"
           id="remember-me"
           value={isChecked}
-          onChange={(e) => setIsChecked(true)}
+          onChange={handleChange}
         />
         <label htmlFor="remember-me">Remember me</label>
       </div>

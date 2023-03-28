@@ -4,12 +4,26 @@ import './index.css';
 import App from './App';
 import { Provider } from 'react-redux';
 import store from './utils/store';
+import { persistStore } from 'redux-persist';
+import { PersistGate } from 'redux-persist/integration/react';
+
+export const persistor = persistStore(store);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
+    <PersistGate loading={null} persistor={persistor}>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </PersistGate>
   </Provider>
 );
+
+window.addEventListener('beforeunload', () => {
+  const state = store.getState();
+  const isChecked = state.remember;
+  if (isChecked === false) {
+    localStorage.clear();
+  }
+});
