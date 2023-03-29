@@ -14,7 +14,7 @@ export default function Layout() {
   const userRoute = location.pathname === '/user';
   const dispatch = useDispatch();
   const infos = useSelector(profileInfos);
-  const username = infos?.body.firstName;
+  const username = infos?.userName;
 
   const handleLogOutClick = () => {
     localStorage.clear();

@@ -6,6 +6,7 @@ import { fetchUser } from '../../features/login';
 import { userToken, loginError, remember } from '../../utils/selectors';
 import { useEffect } from 'react';
 import { toggle } from '../../features/rememberMe';
+import { fetchUserInfos } from '../../features/userInfos';
 
 export default function Form() {
   const [email, setEmail] = useState('');
@@ -14,6 +15,7 @@ export default function Form() {
 
   const dispatch = useDispatch();
   const auth = useSelector(userToken);
+  //console.log(auth);
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -34,7 +36,10 @@ export default function Form() {
         password: password,
       };
 
-      dispatch(fetchUser(userCredentials));
+      dispatch(fetchUser(userCredentials)).then((data) => {
+        //console.log(data.payload);
+        dispatch(fetchUserInfos(data.payload));
+      });
     }
   };
 

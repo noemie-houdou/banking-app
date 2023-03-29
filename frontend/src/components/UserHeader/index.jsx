@@ -1,24 +1,11 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchUserInfos } from '../../features/userInfos';
-import { userToken, profileInfos } from '../../utils/selectors';
+import { useSelector } from 'react-redux';
+import { profileInfos } from '../../utils/selectors';
 import styles from './UserHeader.module.css';
 
 export default function UserHeader() {
-  const auth = useSelector(userToken);
-  const token = auth.body.token;
-  //console.log(token);
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchUserInfos(token));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   const infos = useSelector(profileInfos);
-  const firstname = infos?.body.firstName;
-  const lastname = infos?.body.lastName;
+  const firstname = infos?.firstName;
+  const lastname = infos?.lastName;
 
   return (
     <div className={styles.header}>

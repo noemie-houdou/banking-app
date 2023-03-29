@@ -16,7 +16,8 @@ export const fetchUserInfos = createAsyncThunk(
         console.log(error);
         return rejectWithValue(error);
       } else {
-        const profileInfos = await response.json();
+        const data = await response.json();
+        const profileInfos = data.body;
         return profileInfos;
       }
     } catch (error) {
