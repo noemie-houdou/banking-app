@@ -1,18 +1,17 @@
-import { NavLink, Outlet, useLocation } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { reset } from '../../features/login';
 import { resetProfile } from '../../features/userInfos';
 import { resetIsChecked } from '../../features/rememberMe';
-import { profileInfos } from '../../utils/selectors';
+import { userToken, profileInfos } from '../../utils/selectors';
 import userIcon from '../../assets/icons/circle-user-solid.svg';
 import signOutIcon from '../../assets/icons/right-from-bracket-solid.svg';
 import logo from '../../assets/images/argentBankLogo.png';
 import styles from './Layout.module.css';
 
 export default function Layout() {
-  const location = useLocation();
-  const userRoute = location.pathname === '/user';
   const dispatch = useDispatch();
+  const token = useSelector(userToken);
   const infos = useSelector(profileInfos);
   const username = infos?.userName;
 
@@ -31,7 +30,7 @@ export default function Layout() {
             <img src={logo} alt="Logo Argent Bank" />
             <h1 className={styles.srOnly}>Argent Bank</h1>
           </NavLink>
-          {userRoute ? (
+          {token ? (
             <div className={styles.signOutContainer}>
               <NavLink className={styles.mainNavItem} to="/user">
                 <img
