@@ -19,11 +19,3 @@ root.render(
     </PersistGate>
   </Provider>
 );
-
-window.addEventListener('beforeunload', () => {
-  const state = store.getState();
-  const isChecked = state.remember;
-  if (isChecked === false) {
-    localStorage.clear();
-  }
-});

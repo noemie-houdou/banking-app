@@ -1,4 +1,3 @@
-//import { NavLink } from 'react-router-dom';
 import Form from '../../components/Form';
 import styles from './SignIn.module.css';
 import userIcon from '../../assets/icons/circle-user-solid.svg';
@@ -18,5 +17,3 @@ export default function SignIn() {
     </main>
   );
 }
-
-/*<NavLink to="/user">Sign in</NavLink>*/

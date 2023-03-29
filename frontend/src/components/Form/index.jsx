@@ -3,20 +3,19 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './Form.module.css';
 import { fetchUser } from '../../features/login';
-import { userToken, loginError, remember } from '../../utils/selectors';
-import { useEffect } from 'react';
-import { toggle } from '../../features/rememberMe';
+import { loginError } from '../../utils/selectors';
 import { fetchUserInfos } from '../../features/userInfos';
 
 export default function Form() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isChecked, setIsChecked] = useState(false);
   const [errors, setErrors] = useState({});
 
   const dispatch = useDispatch();
-  const auth = useSelector(userToken);
-  //console.log(auth);
   const navigate = useNavigate();
+
+  //console.log(isChecked);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -35,26 +34,27 @@ export default function Form() {
         email: email,
         password: password,
       };
-
       dispatch(fetchUser(userCredentials)).then((data) => {
-        //console.log(data.payload);
+        console.log(data.meta.requestStatus);
         dispatch(fetchUserInfos(data.payload));
+        if (isChecked === false) {
+          console.log(isChecked);
+          sessionStorage.setItem('token', data.payload);
+        }
+        if (isChecked === true) {
+          localStorage.setItem('token', data.payload);
+        }
+        if (data.meta.requestStatus === 'fulfilled') {
+          navigate('/user');
+        }
       });
     }
   };
 
-  useEffect(() => {
-    if (auth !== null) {
-      navigate('/user');
-    }
-  }, [auth, navigate]);
-
   const error = useSelector(loginError);
 
-  const isChecked = useSelector(remember);
-
-  const handleChange = () => {
-    dispatch(toggle());
+  const handleIsChecked = () => {
+    setIsChecked(!isChecked);
   };
 
   return (
@@ -102,7 +102,7 @@ export default function Form() {
           type="checkbox"
           id="remember-me"
           value={isChecked}
-          onChange={handleChange}
+          onChange={handleIsChecked}
         />
         <label htmlFor="remember-me">Remember me</label>
       </div>

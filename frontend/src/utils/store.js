@@ -1,7 +1,6 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import usersLogin from '../features/login';
 import userInfos from '../features/userInfos';
-import rememberMe from '../features/rememberMe';
 import storage from 'redux-persist/lib/storage';
 import {
   persistReducer,
@@ -13,16 +12,16 @@ import {
   REGISTER,
 } from 'redux-persist';
 
-export const persistConfig = {
+const persistConfig = {
   key: 'root',
   version: 1,
   storage,
+  blacklist: ['login'],
 };
 
 const rootReducer = combineReducers({
   login: usersLogin,
   profile: userInfos,
-  remember: rememberMe,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
