@@ -90,7 +90,7 @@ export default function EditUsername() {
       </form>
       <div className={styles.editUsernameButtons}>
         <button
-          className={styles.editUsernameButton}
+          className={`${styles.editUsernameButton} ${styles.editUsernameButtonSave}`}
           value={isSaved}
           onClick={handleSaveClick}
         >
