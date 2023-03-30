@@ -2,7 +2,9 @@ import { NavLink, Outlet } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { reset } from '../../features/login';
 import { resetProfile } from '../../features/userInfos';
+import { resetUsername } from '../../features/editUsername';
 import { profileInfos } from '../../utils/selectors';
+import { newUsername } from '../../utils/selectors';
 import userIcon from '../../assets/icons/circle-user-solid.svg';
 import signOutIcon from '../../assets/icons/right-from-bracket-solid.svg';
 import logo from '../../assets/images/argentBankLogo.png';
@@ -12,12 +14,14 @@ export default function Layout() {
   const dispatch = useDispatch();
   const infos = useSelector(profileInfos);
   const username = infos?.userName;
+  const usernameEdited = useSelector(newUsername);
 
   const handleLogOutClick = () => {
     sessionStorage.clear();
     localStorage.clear();
     dispatch(reset());
     dispatch(resetProfile());
+    dispatch(resetUsername());
   };
 
   return (
@@ -36,7 +40,7 @@ export default function Layout() {
                   src={userIcon}
                   alt="Icône d'utilisateur"
                 />
-                {infos ? `${username}` : 'Username'}
+                {usernameEdited !== null ? `${usernameEdited}` : `${username}`}
               </NavLink>
               <NavLink
                 className={styles.mainNavItem}
