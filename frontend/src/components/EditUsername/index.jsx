@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchEditUsername } from '../../features/editUsername';
 import { profileInfos } from '../../utils/selectors';
+import { newUsername } from '../../utils/selectors';
 import UserHeader from '../UserHeader';
 import styles from './EditUsername.module.css';
 
@@ -15,6 +16,7 @@ export default function EditUsername() {
   const userName = infos?.userName;
   const firstName = infos?.firstName;
   const lastName = infos?.lastName;
+  const usernameEdited = useSelector(newUsername);
 
   const dispatch = useDispatch();
 
@@ -55,7 +57,9 @@ export default function EditUsername() {
             className={styles.editUsernameInput}
             type="text"
             id="username"
-            placeholder={userName}
+            placeholder={
+              usernameEdited !== null ? `${usernameEdited}` : `${userName}`
+            }
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
