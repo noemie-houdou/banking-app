@@ -41,7 +41,6 @@ export default function EditUsername() {
       setIsSaved(!isSaved);
     }
   };
-  console.log(username);
 
   return isClicked || isSaved ? (
     <UserHeader />

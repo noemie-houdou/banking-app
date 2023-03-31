@@ -15,8 +15,6 @@ export default function Form() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  //console.log(isChecked);
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -35,10 +33,8 @@ export default function Form() {
         password: password,
       };
       dispatch(fetchUser(userCredentials)).then((data) => {
-        console.log(data.meta.requestStatus);
         dispatch(fetchUserInfos(data.payload));
         if (isChecked === false) {
-          console.log(isChecked);
           sessionStorage.setItem('token', data.payload);
         }
         if (isChecked === true) {
