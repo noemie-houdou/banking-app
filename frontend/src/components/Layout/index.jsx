@@ -34,7 +34,7 @@ export default function Layout() {
           </NavLink>
           {localStorage.getItem('token') || sessionStorage.getItem('token') ? (
             <div className={styles.signOutContainer}>
-              <NavLink className={styles.mainNavItem} to="/user">
+              <NavLink className={styles.mainNavItem} to="/profile">
                 <img
                   className={styles.userIcon}
                   src={userIcon}

@@ -41,7 +41,7 @@ export default function Form() {
           localStorage.setItem('token', data.payload);
         }
         if (data.meta.requestStatus === 'fulfilled') {
-          navigate('/user');
+          navigate('/profile');
         }
       });
     }

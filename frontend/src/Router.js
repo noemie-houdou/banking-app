@@ -6,7 +6,7 @@ import {
 import Layout from './components/Layout';
 import Homepage from './pages/Homepage';
 import SignIn from './pages/SignIn';
-import User from './pages/User';
+import Profile from './pages/Profile';
 import { IsConnected } from './utils/IsConnected';
 
 const router = createBrowserRouter(
@@ -15,10 +15,10 @@ const router = createBrowserRouter(
       <Route path="/" element={<Homepage />} />
       <Route path="/sign-in" element={<SignIn />} />
       <Route
-        path="/user"
+        path="/profile"
         element={
           <IsConnected>
-            <User />
+            <Profile />
           </IsConnected>
         }
       />

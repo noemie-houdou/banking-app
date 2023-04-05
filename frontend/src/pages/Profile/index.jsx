@@ -1,9 +1,9 @@
-import styles from './User.module.css';
+import styles from './Profile.module.css';
 import UserHeader from '../../components/UserHeader';
 import Account from '../../components/Account';
 import accountsData from '../../utils/accountsData';
 
-export default function User() {
+export default function Profile() {
   return (
     <main className={styles.mainBgDark}>
       <UserHeader />
