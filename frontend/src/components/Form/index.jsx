@@ -33,14 +33,14 @@ export default function Form() {
         password: password,
       };
       dispatch(fetchUser(userCredentials)).then((data) => {
-        dispatch(fetchUserInfos(data.payload));
-        if (isChecked === false) {
-          sessionStorage.setItem('token', data.payload);
-        }
-        if (isChecked === true) {
-          localStorage.setItem('token', data.payload);
-        }
         if (data.meta.requestStatus === 'fulfilled') {
+          dispatch(fetchUserInfos(data.payload));
+          if (isChecked === false) {
+            sessionStorage.setItem('token', data.payload);
+          }
+          if (isChecked === true) {
+            localStorage.setItem('token', data.payload);
+          }
           navigate('/profile');
         }
       });
